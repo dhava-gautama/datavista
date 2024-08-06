@@ -25,13 +25,13 @@ DataVista is an interactive data visualization app that allows users to upload C
 
 1. Clone the repository: `git clone https://github.com/dhava-gautama/datavista.git`
 2. Install required libraries: `pip install -r requirements.txt`
-3. Run the app: `streamlit run app.py`
+3. Run the app: `streamlit run streamlit_app.py`
 
 **Usage**
 ---------
 
 1. Upload a CSV or Excel file using the file uploader.
-2. Adjust the number of rows to show in the dynamic table.
+2. Adjust the number of rows to show in the dynamic table to preview the data.
 3. Select a chart type and customize the chart as desired.
 4. Explore and visualize your data!
 
