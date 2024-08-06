@@ -14,6 +14,17 @@ def load_data(file_path):
         else:
             st.error('File type not supported. Please upload a CSV or Excel file.'+ file_path.type)
             return None
+        # Autoparse time variables
+        try:
+            time_variable = ['date', 'time', 'datetime', 'timestamp', 'waktu', 'tanggal', 'jam', 'hari', 'bulan', 'tahun']
+            for name in time_variable:
+                if name in data.columns:
+                    data[name] = pd.to_datetime(data[name])
+            # set time variable as index
+            if any(name in data.columns for name in time_variable):
+                data.set_index(time_variable, inplace=True)
+        except:
+            pass
         return data
     except Exception as e:
         st.error(f'Error: {e}')
@@ -61,6 +72,7 @@ def main():
     if file_path is not None:
         data = load_data(file_path)
         if data is not None:
+            display_data_info(data)
             display_dynamic_table(data)
             visualize_data(data)
 
