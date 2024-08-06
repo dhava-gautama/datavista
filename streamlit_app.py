@@ -15,10 +15,10 @@ def load_data(file_path):
             st.error('File type not supported. Please upload a CSV or Excel file.'+ file_path.type)
             return None
         # Autoparse time variables
-        time_variable = ['date', 'time', 'datetime', 'timestamp', 'waktu', 'tanggal', 'jam', 'hari', 'bulan', 'tahun']
+        time_variable = ['date', 'time', 'datetime', 'timestamp', 'waktu']
         for col in data.columns:
             if any(name in col.lower() for name in time_variable):
-                data[col] = pd.to_datetime(data[col])
+                data[col] = pd.to_datetime(data[col], dayfirst=True, errors='coerce')
                 # set time variable as index
                 data.set_index(col, inplace=True)
         return data
