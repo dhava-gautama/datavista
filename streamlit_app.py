@@ -7,9 +7,9 @@ import seaborn as sns
 # Load Data
 def load_data(file_path):
     try:
-        if file_path.type == 'xlsx' or file_path.type == 'xls':
+        if file_path.type == 'file.application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' or file_path.type == 'file.application/vnd.ms-excel':
             data = pd.read_excel(file_path)
-        elif file_path.type == 'csv':
+        elif file_path.type == 'file.text/csv':
             data = pd.read_csv(file_path)
         else:
             st.error('File type not supported. Please upload a CSV or Excel file.'+ file_path.type)
