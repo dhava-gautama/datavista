@@ -35,7 +35,12 @@ def display_data_info(data):
 def display_dynamic_table(data):
     st.subheader('Data Preview')
     row_to_show = st.slider('Select number of rows to show', min_value=1, max_value=len(data), value=10)
-    st.dataframe(data.head(row_to_show))
+    # let user choose to display the data head or tail.
+    head_or_tail = st.selectbox('Display head or tail of the data', ['Head', 'Tail'])
+    if head_or_tail == 'Head':
+        st.dataframe(data.head(row_to_show))
+    else:
+        st.dataframe(data.tail(row_to_show))
 
 # Data visualization
 def visualize_data(data):
@@ -62,9 +67,15 @@ def visualize_data(data):
 
 # Main function
 def main():
+    st.set_page_config(layout="wide")
     st.title("Data Visualization App")
-    file_path = st.file_uploader("Upload CSV or Excel file", type=["csv", "xls", "xlsx"], accept_multiple_files=False)
-
+    # Sidebar
+    with st.sidebar:
+        st.subheader("Upload Data")
+        st.write("Please upload a CSV or Excel file.")
+        file_path = st.file_uploader("Upload CSV or Excel file", type=["csv", "xls", "xlsx"],
+                                     accept_multiple_files=False)
+    # Main
     if file_path is not None:
         data = load_data(file_path)
         if data is not None:
