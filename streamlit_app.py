@@ -12,7 +12,7 @@ def load_data(file_path):
         elif file_path.type == 'csv':
             data = pd.read_csv(file_path)
         else:
-            st.error('File type not supported')
+            st.error('File type not supported. Please upload a CSV or Excel file.', file_path.type)
             return None
         return data
     except Exception as e:
