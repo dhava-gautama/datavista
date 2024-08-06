@@ -56,7 +56,7 @@ def visualize_data(data):
 # Main function
 def main():
     st.title("Data Visualization App")
-    file_path = st.file_uploader("Upload CSV or Excel file", type=["csv", "xls", "xlsx"])
+    file_path = st.file_uploader("Upload CSV or Excel file", type=["csv", "xls", "xlsx"], accept_multiple_files=False)
 
     if file_path is not None:
         data = load_data(file_path)
